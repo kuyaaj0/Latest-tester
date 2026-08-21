@@ -103,16 +103,16 @@ class PlayState extends MusicBeatState
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
 	public static var ratingStuff:Array<Dynamic> = [
-		['You Suck!', 0.2], // From 0% to 19%
-		['Shit', 0.4], // From 20% to 39%
-		['Bad', 0.5], // From 40% to 49%
-		['Bruh', 0.6], // From 50% to 59%
-		['Meh', 0.69], // From 60% to 68%
-		['Nice', 0.7], // 69%
-		['Good', 0.8], // From 70% to 79%
-		['Great', 0.9], // From 80% to 89%
-		['Sick!', 1], // From 90% to 99%
-		['Perfect!!', 1] // The value on this one isn't used actually, since Perfect is always "1"
+		['Negative Aura', 0.2], // From 0% to 19%
+		['F-', 0.4], // From 20% to 39%
+		['F', 0.5], // From 40% to 49%
+		['D', 0.6], // From 50% to 59%
+		['C-', 0.69], // From 60% to 68%
+		['C', 0.7], // 69%
+		['B', 0.8], // From 70% to 79%
+		['A', 0.9], // From 80% to 89%
+		['S', 1], // From 90% to 99%
+		['Overpowered!!', 1] // The value on this one isn't used actually, since Perfect is always "1"
 	];
 
 	// event variables
@@ -210,6 +210,7 @@ class PlayState extends MusicBeatState
 
 	public var gfSpeed:Int = 1;
 	public var health(default, set):Float = 1;
+	public var smoothHealth:Float = 1;
 	public var combo:Int = 0;
 	public var highestCombo:Int = 0;
 
@@ -288,6 +289,8 @@ class PlayState extends MusicBeatState
 	public var camPause:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
+	public var commaSeperated:Bool = true;
+	public var smoothScore:Float = 0;
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -2781,6 +2784,27 @@ class PlayState extends MusicBeatState
 
 		onUpdatePostArgs[0] = elapsed;
 		callOnScripts('onUpdatePost', onUpdatePostArgs);
+
+		// === Smooth Score ===
+			if (ClientPrefs.data.smoothScore)
+			{
+				smoothScore = CoolUtil.smoothLerp(smoothScore, songScore, 0.3);
+				updateScore();
+			}
+				else
+				{
+					smoothScore = songScore;
+				}
+
+		// === Smooth Health ===
+			if (ClientPrefs.data.smoothHealth)
+			{
+				smoothHealth = CoolUtil.smoothLerp(smoothHealth, health, 0.35);
+			}
+				else
+				{
+					smoothHealth = health;
+				}
 	}
 
 	override function drawUpdate(elapsed:Float) {
