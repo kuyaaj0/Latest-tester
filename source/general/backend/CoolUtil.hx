@@ -246,6 +246,16 @@ class CoolUtil
 	}
 
 /**
+ * Smooth linear interpolation function.
+ * Moves the value toward the target smoothly based on ratio.
+ * Example: smoothLerp(current, target, 0.1)
+ */
+	inline public static function smoothLerp(current:Float, target:Float, ratio:Float):Float
+{
+    return current + (target - current) * ratio;
+}
+
+/**
  * Format numbers with commas (1,000 / 1,000,000 etc.)
  * Only applies commas when the number >= 1000.
  */
