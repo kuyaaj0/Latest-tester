@@ -2543,6 +2543,27 @@ class PlayState extends MusicBeatState
 		onUpdateArgs[0] = elapsed;
 		callOnScripts('onUpdate', onUpdateArgs);
 
+					// === Smooth Score ===
+			if (ClientPrefs.data.smoothScore)
+			{
+				smoothScore = CoolUtil.smoothLerp(smoothScore, songScore, 0.3);
+				updateScore();
+			}
+				else
+				{
+					smoothScore = songScore;
+				}
+
+		// === Smooth Health ===
+			if (ClientPrefs.data.smoothHealth)
+			{
+				smoothHealth = CoolUtil.smoothLerp(smoothHealth, health, 0.35);
+			}
+				else
+				{
+					smoothHealth = health;
+				}
+
 		super.update(elapsed);
 
 		setOnScripts('curDecStep', curDecStep);
@@ -2785,27 +2806,7 @@ class PlayState extends MusicBeatState
 		onUpdatePostArgs[0] = elapsed;
 		callOnScripts('onUpdatePost', onUpdatePostArgs);
 
-		// === Smooth Score ===
-			if (ClientPrefs.data.smoothScore)
-			{
-				smoothScore = CoolUtil.smoothLerp(smoothScore, songScore, 0.3);
-				updateScore();
-			}
-				else
-				{
-					smoothScore = songScore;
-				}
-
-		// === Smooth Health ===
-			if (ClientPrefs.data.smoothHealth)
-			{
-				smoothHealth = CoolUtil.smoothLerp(smoothHealth, health, 0.35);
-			}
-				else
-				{
-					smoothHealth = health;
-				}
-	}
+		}
 
 	override function drawUpdate(elapsed:Float) {
 
