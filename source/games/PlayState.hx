@@ -2859,7 +2859,7 @@ class PlayState extends MusicBeatState
 
 		if (ClientPrefs.data.playOpponent ? !cpuControlled_opponent : !cpuControlled)
 		{
-			var displayedScore:String = commaSeparated ? CoolUtil.commaSeparate(Std.int(smoothScore)) : Std.string(Std.int(smoothScore));
+			var displayedScore:String = commaSeperated ? CoolUtil.commaSeperate(Std.int(smoothScore)) : Std.string(Std.int(smoothScore));
 			scoreTxt.text += " | "
 			+ "Score: " + displayedScore
 			+ " | Misses: " + songMisses
