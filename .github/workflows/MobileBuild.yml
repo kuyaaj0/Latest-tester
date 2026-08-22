@@ -1,4 +1,9 @@
 name: MobileBuild
+
+permissions:
+  actions: write
+  contents: write
+
 on:
   workflow_call:
     inputs:
