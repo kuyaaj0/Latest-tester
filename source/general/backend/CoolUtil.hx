@@ -259,7 +259,7 @@ class CoolUtil
  * Format numbers with commas (1,000 / 1,000,000 etc.)
  * Only applies commas when the number >= 1000.
  */
-	  public static function commaSeparate(num:Float):String
+	  public static function commaSeperate(num:Float):String
 {
     var value:Int = Math.floor(num);
 
