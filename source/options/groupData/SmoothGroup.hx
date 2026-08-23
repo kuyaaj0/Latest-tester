@@ -6,7 +6,7 @@ class SmoothGroup extends OptionCata
 	{
 		super(X, Y, width, height);
 
-		var option:Option = new Option(this, 'Smooth Setting', TITLE);
+		var option:Option = new Option(this, 'Smooth Settings', TITLE);
 		addOption(option);
 
 		var option:Option = new Option(this, 'Smooth', TEXT);
