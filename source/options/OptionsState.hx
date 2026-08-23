@@ -301,6 +301,8 @@ class OptionsState extends MusicBeatState
 				obj = new GamePlayGroup(outputX, outputY, outputWidth, outputHeight);
 			case 'Game UI':
 				obj = new UIGroup(outputX, outputY, outputWidth, outputHeight);
+			case 'Smooth Settings':
+				obj = new SmoothGroup(outputX, outputY, outputWidth, outputHeight);
 			case 'Skin':
 				obj = new SkinGroup(outputX, outputY, outputWidth, outputHeight);
 			case 'Input':
