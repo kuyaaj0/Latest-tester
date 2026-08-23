@@ -9,8 +9,6 @@ class SmoothGroup extends OptionCata
 		var option:Option = new Option(this, 'Smooth Setting', TITLE);
 		addOption(option);
 
-        /////--Smooth Option--\\\\\
-
 		var option:Option = new Option(this, 'Smooth', TEXT);
 		addOption(option);
 
@@ -20,7 +18,8 @@ class SmoothGroup extends OptionCata
 		var option:Option = new Option(this, 'smoothScore', BOOL);
 		addOption(option);
 
-		/////--Comma Seperate Feature--\\\\\
+		var option:Option = new Option(this, 'Comma Seperate', TEXT);
+		addOption(option);
 
 		var option:Option = new Option(this, 'commaSeperated', BOOL);
 		addOption(option);
