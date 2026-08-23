@@ -15,15 +15,15 @@ class SmoothGroup extends OptionCata
 		addOption(option);
 
 		var option:Option = new Option(this, 'smoothHealth', BOOL);
-		addOption(option, true);
+		addOption(option);
 
 		var option:Option = new Option(this, 'smoothScore', BOOL);
-		addOption(option, true);
+		addOption(option);
 
 		/////--Comma Seperate Feature--\\\\\
 
 		var option:Option = new Option(this, 'commaSeperated', BOOL);
-		addOption(option, true);
+		addOption(option);
     
 		changeHeight(0); //初始化真正的height
 	}
