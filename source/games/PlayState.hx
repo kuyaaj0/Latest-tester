@@ -2567,7 +2567,7 @@ class PlayState extends MusicBeatState
 		if (ClientPrefs.data.smoothScore)
 		{
 			// Pass 'elapsed' and a speed value (0.3 acts as the base 60FPS rate)
-			smoothScore = CoolUtil.smoothLerp(smoothScore, songScore, Flixel.G.elapsed, 0.3);  
+			smoothScore = CoolUtil.smoothLerp(smoothScore, songScore, 0.3);  
 			updateScore();
 		}
 		else
@@ -2580,7 +2580,7 @@ class PlayState extends MusicBeatState
 		if (ClientPrefs.data.smoothHealth)
 		{
 			// Pass 'elapsed' and a speed value (0.35 acts as the base 60FPS rate)
-			smoothHealth = CoolUtil.smoothLerp(smoothHealth, health, Flixel.G.elapsed, 0.35);
+			smoothHealth = CoolUtil.smoothLerp(smoothHealth, health, 0.35);
 		}
 		else
 		{
