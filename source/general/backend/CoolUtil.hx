@@ -257,6 +257,9 @@ class CoolUtil
 
 inline public static function smoothLerp(current:Float, target:Float, elapsed:Float, speed:Float):Float
 {
+	// Automatically gets Flixel's elapsed time using the correct lowercase package
+    var elapsed:Float = flixel.FlxG.elapsed;
+	
     // 1. Frame-rate independent ratio adjustment (normalized to 60 FPS)
     var factor:Float = 1 - Math.pow(1 - speed, elapsed * 60);
     var result:Float = current + (target - current) * factor;
