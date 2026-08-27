@@ -2544,7 +2544,7 @@ class PlayState extends MusicBeatState
 		callOnScripts('onUpdate', onUpdateArgs);
 
 					// === Smooth Score ===
-			if (ClientPrefs.data.smoothScore)
+			/*if (ClientPrefs.data.smoothScore)
 			{
 				smoothScore = CoolUtil.smoothLerp(smoothScore, songScore, 0.3);
 				updateScore();
@@ -2562,7 +2562,30 @@ class PlayState extends MusicBeatState
 				else
 				{
 					smoothHealth = health;
-				}
+				}*/
+
+		if (ClientPrefs.data.smoothScore)
+		{
+			// Pass 'elapsed' and a speed value (0.3 acts as the base 60FPS rate)
+			smoothScore = CoolUtil.smoothLerp(smoothScore, songScore, Flixel.G.elapsed, 0.3);  
+			updateScore();
+		}
+		else
+		{   
+			smoothScore = songScore;  
+			updateScore(); // Added here to ensure UI updates immediately if toggled off
+		}
+
+		// === Smooth Health ===
+		if (ClientPrefs.data.smoothHealth)
+		{
+			// Pass 'elapsed' and a speed value (0.35 acts as the base 60FPS rate)
+			smoothHealth = CoolUtil.smoothLerp(smoothHealth, health, Flixel.G.elapsed, 0.35);
+		}
+		else
+		{
+			smoothHealth = health;
+		}
 
 		super.update(elapsed);
 
