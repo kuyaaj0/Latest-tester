@@ -255,22 +255,23 @@ class CoolUtil
     return current + (target - current) * ratio;
 }*/
 
-inline public static function smoothLerp(current:Float, target:Float, elapsed:Float, speed:Float):Float
+inline public static function smoothLerp(baseValue:Float, targetValue:Float, interpolationSpeed:Float):Float
 {
-	// Automatically gets Flixel's elapsed time using the correct lowercase package
-    var elapsed:Float = flixel.FlxG.elapsed;
-	
-    // 1. Frame-rate independent ratio adjustment (normalized to 60 FPS)
-    var factor:Float = 1 - Math.pow(1 - speed, elapsed * 60);
-    var result:Float = current + (target - current) * factor;
+    // Fetch the game engine delta time automatically
+    var dt:Float = flixel.FlxG.elapsed;
 
-    // 2. Snap to target if it gets close enough (fixes the 349/350 issue)
-    if (Math.abs(target - result) < 0.1) {
-        return target;
+    // Frame-rate independent factor logic
+    var factor:Float = 1 - Math.pow(1 - interpolationSpeed, dt * 60);
+    var result:Float = baseValue + (targetValue - baseValue) * factor;
+
+    // Hard snap to prevent floating decimals from getting stuck at 349/350
+    if (Math.abs(targetValue - result) < 0.1) {
+        return targetValue;
     }
 
     return result;
 }
+
 
 
 /**
