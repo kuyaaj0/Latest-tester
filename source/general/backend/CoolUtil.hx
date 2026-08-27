@@ -250,10 +250,25 @@ class CoolUtil
  * Moves the value toward the target smoothly based on ratio.
  * Example: smoothLerp(current, target, 0.1)
  */
-	inline public static function smoothLerp(current:Float, target:Float, ratio:Float):Float
+	/*inline public static function smoothLerp(current:Float, target:Float, ratio:Float):Float
 {
     return current + (target - current) * ratio;
+}*/
+
+inline public static function smoothLerp(current:Float, target:Float, elapsed:Float, speed:Float):Float
+{
+    // 1. Frame-rate independent ratio adjustment (normalized to 60 FPS)
+    var factor:Float = 1 - Math.pow(1 - speed, elapsed * 60);
+    var result:Float = current + (target - current) * factor;
+
+    // 2. Snap to target if it gets close enough (fixes the 349/350 issue)
+    if (Math.abs(target - result) < 0.1) {
+        return target;
+    }
+
+    return result;
 }
+
 
 /**
  * Format numbers with commas (1,000 / 1,000,000 etc.)
